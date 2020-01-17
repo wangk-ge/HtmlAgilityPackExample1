@@ -1,0 +1,1817 @@
+<SCRIPT LANGUAGE="Javascript">
+
+var origColor = null;
+function over(evt) 
+{
+  if (document.all) {
+    var src = event.srcElement;
+    var parent = src.parentElement;
+  } else {
+    var src = evt.target;
+    if (src.nodeType == 3) src = src.parentNode;
+    var parent = src.parentNode;
+  }
+  if (("SPAN" == src.tagName && parent.className != '') || "LI" == src.tagName) {
+    if ("LI" == src.tagName) {
+      var grandparent = (document.all) ? parent.parentElement : parent.parentNode;
+      src = (document.all) ? document.all[src.sourceIndex+1] : src.firstChild;
+      if (grandparent.tagName == "LI") return;
+    }
+    origColor = src.style.color;
+    src.style.color = "rgb(0,0,255)";
+    src.style.cursor = (document.all) ? "hand" : "pointer";
+  }
+}
+
+function out(evt) {
+  if (document.all) {
+    var src = event.srcElement;
+    var parent = src.parentElement;
+  } else {
+    var src = evt.target;
+    if (src.nodeType == 3) src = src.parentNode;
+    var parent = src.parentNode;
+  }
+  if (("SPAN" == src.tagName && parent.className != '') || "LI" == src.tagName) {
+    if ("LI" == src.tagName) {
+      var grandparent = (document.all) ? parent.parentElement : parent.parentNode;
+      src = (document.all) ? document.all[src.sourceIndex+1] : src.firstChild;
+      if (grandparent.tagName == "LI") return;
+    }
+    src.style.color = origColor;
+    src.style.cursor = "auto";
+  }
+}
+
+function getChildElement(obj, childNum) {
+  var child = 0;
+  if (obj.hasChildNodes()) {
+    for (var i=0; i < obj.childNodes.length; i++) {
+      if (obj.childNodes[i].nodeType != 1) continue;
+      if (child != childNum) {
+         child++;
+         continue;
+      } else
+         return obj.childNodes[i];
+    }
+  }
+  return null;
+}
+
+function showIt(evt) {
+  var child = null, parent;
+  if (document.all) {
+    var src = event.srcElement;
+    var parent = src.parentElement;
+  } else {
+    var src = evt.target;
+    if (src.nodeType == 3)  src = src.parentNode;
+    var parent = src.parentNode;
+  }
+  if (("SPAN" == src.tagName && parent.className != '') || "LI" == src.tagName) {
+    if ("LI" == src.tagName) {
+	  src = (document.all) ? document.all[src.sourceIndex+1] : src.firstChild;
+	  parent = (document.all) ? src.parentElement : src.parentNode;
+    }
+     child = (document.all ? document.all[src.sourceIndex+1] : getChildElement(parent, 1));
+     if (null != child && "LI" == parent.tagName && "UL" == child.tagName) {
+       parent.className = ("close" == parent.className ? "open" : "close");
+       child.className = ('expanded' == child.className ? 'none' : 'expanded');
+     }
+  }
+}
+
+function showIt(evt) {
+  var child = null, parent;
+  if (document.all) {
+    var src = event.srcElement;
+    var parent = src.parentElement;
+  } else {
+    var src = evt.target;
+    if (src.nodeType == 3)  src = src.parentNode;
+    var parent = src.parentNode;
+  }
+  if (("SPAN" == src.tagName && parent.className != '') || "LI" == src.tagName) {
+    if ("LI" == src.tagName) {
+	  src = (document.all) ? document.all[src.sourceIndex+1] : src.firstChild;
+	  parent = (document.all) ? src.parentElement : src.parentNode;
+    }
+     child = (document.all ? document.all[src.sourceIndex+1] : getChildElement(parent, 1));
+     if (null != child && "LI" == parent.tagName && "UL" == child.tagName) {
+       parent.className = ("close" == parent.className ? "open" : "close");
+       child.className = ('expanded' == child.className ? 'none' : 'expanded');
+     }
+  }
+}
+
+</SCRIPT><STYLE TYPE="text/css">
+		  body { 
+		  font-family: Sans-Serif; 
+		  
+		  }
+		  
+table { 
+		  font-size: 10pt;
+UL.toc {font-weight: bold;}
+UL.toc LI {list-style-type: disc;}
+UL.toc UL LI {font-weight: normal;list-style-type: none;} UL.toc UL, UL.toc UL 
+UL {display:none} UL.toc .expanded {display:block} 
+
+UL.tod {font-weight: bold;}
+UL.tod LI {list-style-type: disc;margin-left: -20px;}
+UL.tod UL LI {font-weight: normal;list-style-type: none;margin-left: -35px;}
+UL.tod UL, UL.tod UL UL {display:none} 
+UL.tod .expanded {display:block}
+
+UL.tob {font-weight: bold;}
+UL.tob LI {list-style-type: disc;}
+UL.tob UL LI {font-weight: bold;list-style-type: none;}
+UL.tob UL LI UL LI{font-weight: normal;list-style-type: none;}
+UL.tob UL, UL.tob UL UL {display:none} 
+UL.toc UL, UL.tod UL UL {display:none} 
+UL.tob .expanded {display:block}
+
+
+</STYLE><HR COLOR="#6699CC" SIZE="10"><big><big><b> : NB RF Certification Test</b></big></big><br><big><b>Status:  <span style="color:#00CC00">PASS</span></b></big><br><b>Date:  05/14/2019</b><br><br><a name="TOC1"></a><HR COLOR="#6699CC" SIZE="2"><big><b>Table of Contents</b></big><UL><table border="1">
+<tr>
+<td><a href="#11">Open Sequence Deivces</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#12">NB Initialize System Simulator</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#13">NB Setup Call</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#14">3GPP TS 36.521-1-e20 Chapter 6.2.2F UE Maximum Output Power for catogory NB1</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#15">3GPP TS 36.521-1-e20 Chapter 6.5.1F Frequency Error for UE category NB1</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#16">3GPP TS 36.521-1-e20 Chapter 6.5.2.1F.1	Error Vector Magnitude (EVM) for category NB1</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#17">3GPP TS 36.521-1-e20 Chapter 7.3F.1 Reference sensitivity level without repetitions for UE category NB1</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#18">NB End Call</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+<tr>
+<td><a href="#19">Close Sequence Deivces</a></td>
+<td bgcolor="#00CC00">PASS</td>
+</tr>
+</table></UL><table cellspacing="0"><tr><td><UL>
+<b>Additional Test Run Data</b><UL CLASS="tob"><LI CLASS="close" ONMOUSEOVER="over(event);" ONMOUSEOUT="out(event);" ONCLICK="showIt(event);">
+<span>Test Time...</span><UL>
+<LI>Start Time:  12:59:19</LI>
+<LI>Stop Time:  13:14:39</LI>
+<LI>Duration:  00:15:20  033ms</LI>
+</UL>
+</LI></UL>
+<UL CLASS="tob"><LI CLASS="close" ONMOUSEOVER="over(event);" ONMOUSEOUT="out(event);" ONCLICK="showIt(event);">
+<span>UUT Information...</span><UL><LI>UUT ID:  </LI></UL>
+</LI></UL>
+<UL CLASS="tob"><LI CLASS="close" ONMOUSEOVER="over(event);" ONMOUSEOUT="out(event);" ONCLICK="showIt(event);">
+<span>XTT Information...</span><UL><LI>XTT :  E:\ZY\SP NB-Signal-Test Demo V1.5\Sequence.Suite\TestSequences\5310-A-CM-TEST.xml</LI></UL>
+</LI></UL>
+<UL CLASS="tob"><LI CLASS="close" ONMOUSEOVER="over(event);" ONMOUSEOUT="out(event);" ONCLICK="showIt(event);">
+<span>Test Station Information...</span><UL>
+<LI>Name: SP8630 </LI>
+<LI>Type: NB-IoT RF Conformance Testing System  </LI>
+<LI>
+<span>Equipment Configuration...</span><UL><LI>Call Processor:  StarPoint,SP83xx Series,SP8315-1123,N1.0.6.9
+</LI></UL>
+</LI>
+<LI>
+<span>Software Configuration...</span><UL><LI>:  </LI></UL>
+</LI>
+</UL>
+</LI></UL>
+<UL CLASS="tob"><LI CLASS="close" ONMOUSEOVER="over(event);" ONMOUSEOUT="out(event);" ONCLICK="showIt(event);">
+<span>Operator Information...</span><UL>
+<LI>ID:  </LI>
+<LI>Name:  </LI>
+<LI>Title:  </LI>
+</UL>
+</LI></UL>
+</UL></td></tr></table><br><a name="11"></a><HR COLOR="#6699CC" SIZE="2"><big><b>Open Sequence Deivces</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL></UL><br><a href="#TOC1">Back to top</a><a name="12"></a><HR COLOR="#6699CC" SIZE="2"><big><b>NB Initialize System Simulator</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>RF Input Port</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>RF Output Port</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Connection Mode</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Antenna Configuration</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>nprach-CP-Length</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>nprach-Periodicity</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>prach-StartTime</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Integrity Protection</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>TTCN Log State</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">IO</td>
+<td align="center">IO</td>
+<td align="center">SIGN</td>
+<td align="center">1AN</td>
+<td align="center">us66dot7</td>
+<td align="center">ms80</td>
+<td align="center">ms32</td>
+<td align="center">128-EIA1</td>
+<td align="center">OFF</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">0.436</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="13"></a><HR COLOR="#6699CC" SIZE="2"><big><b>NB Setup Call</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>Target Call State</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Retry Count</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Connection Diagram</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Band</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Cell Power (dBm)</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>P-Max Power (dBm)</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.223</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.266</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.283</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.281</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.249</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">13.306</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.280</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.258</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.269</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.265</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.264</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.340</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.270</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">14.312</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">13.282</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">13.257</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.267</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.261</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State2A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.278</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">State3A-NB</td>
+<td align="center">1</td>
+<td align="center">A3</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">omit</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">12.279</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="14"></a><HR COLOR="#6699CC" SIZE="2"><big><b>3GPP TS 36.521-1-e20 Chapter 6.2.2F UE Maximum Output Power for catogory NB1</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>Configuration ID</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Retry Count</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Band</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Cell Power (dBm)</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Subcarriers</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink RMC Channel Type</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Ntones</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Sub-carrier Spacing</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Specification Reference</b></td>
+<td bgcolor="#6699CC" align="center"><b>Max Output Power Avg (dBm)</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Max Output Power Avg Min</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Max Output Power Avg Max</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">BPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.6898</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.143</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">BPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.7031</td>
+<td align="center">20.3</td>
+<td align="center">25.7</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.126</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.4988</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.131</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.5885</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.127</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">3@3</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">21.7926</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.143</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">BPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.2557</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.152</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">BPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.2534</td>
+<td align="center">20.3</td>
+<td align="center">25.7</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.130</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.2359</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.150</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">22.2065</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.127</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-74.21</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">3@3</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">21.8257</td>
+<td align="center">21.2</td>
+<td align="center">24.8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">1.142</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="15"></a><HR COLOR="#6699CC" SIZE="2"><big><b>3GPP TS 36.521-1-e20 Chapter 6.5.1F Frequency Error for UE category NB1</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>Configuration ID</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Retry Count</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Band</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Cell Power (dBm)</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Subcarriers</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink RMC Channel Type</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Ntones</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Sub-carrier Spacing</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Specification Reference</b></td>
+<td bgcolor="#6699CC" align="center"><b>Frequency Error (Hz)</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Frequency Error Min</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Frequency Error Max</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">6.2768</td>
+<td align="center">-173.418</td>
+<td align="center">173.418</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.228</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">4.5601</td>
+<td align="center">-173.418</td>
+<td align="center">173.418</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.623</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">3@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">23.8306</td>
+<td align="center">-173.418</td>
+<td align="center">173.418</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.086</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">6@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">13.9803</td>
+<td align="center">-173.418</td>
+<td align="center">173.418</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.094</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">16.0656</td>
+<td align="center">-173.418</td>
+<td align="center">173.418</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.058</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">19.8030</td>
+<td align="center">-179.682</td>
+<td align="center">179.682</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.509</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">17.5537</td>
+<td align="center">-179.682</td>
+<td align="center">179.682</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.721</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">3@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">18.8704</td>
+<td align="center">-179.682</td>
+<td align="center">179.682</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.086</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">6@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">10.9848</td>
+<td align="center">-179.682</td>
+<td align="center">179.682</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.081</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-107.5</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">24.3409</td>
+<td align="center">-179.682</td>
+<td align="center">179.682</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.072</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="16"></a><HR COLOR="#6699CC" SIZE="2"><big><b>3GPP TS 36.521-1-e20 Chapter 6.5.2.1F.1	Error Vector Magnitude (EVM) for category NB1</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>Configuration ID</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Retry Count</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Test Point</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Band</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Subcarriers</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink RMC Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Ntones</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Sub-carrier Spacing</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Specification Reference</b></td>
+<td bgcolor="#6699CC" align="center"><b>General EVM (%)</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>General EVM Min</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>General EVM Max</b></td>
+<td bgcolor="#6699CC" align="center"><b>DMRS EVM (%)</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>DMRS EVM Min</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>DMRS EVM Max</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.6214</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.4394</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.281</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.6248</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.3784</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.278</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.6155</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.5487</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.242</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.7521</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.5280</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.328</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.7628</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">40.809</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.7583</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">40.508</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.2977</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.9528</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.789</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.3398</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.7046</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.744</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.2924</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.8266</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">11.714</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.2158</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.7865</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">11.679</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.7816</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">40.690</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.7560</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.625</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">9.9865</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">8.2298</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.058</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">10.1539</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">6.4623</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.079</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.7518</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.228</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.7296</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.6325</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.254</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.6663</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.5905</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.251</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.7550</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.4726</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.219</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">1.6984</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.4697</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">7.327</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.8306</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.113</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@47</td>
+<td align="center">3.75 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.8684</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.965</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.3998</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">2.0263</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.709</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.5146</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.8632</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">6.678</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.3198</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.9007</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">11.785</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">2.3095</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">1.8461</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">11.825</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.8456</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.434</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">1@11</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.8462</td>
+<td align="center">0</td>
+<td align="center">8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">41.621</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">10.0615</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">7.1638</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.062</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPUSCH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">9.2318</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">7.8010</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">2.063</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">NPRACH</td>
+<td align="center">QPSK</td>
+<td align="center">12@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">0.8779</td>
+<td align="center">0</td>
+<td align="center">12</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">40.931</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="17"></a><HR COLOR="#6699CC" SIZE="2"><big><b>3GPP TS 36.521-1-e20 Chapter 7.3F.1 Reference sensitivity level without repetitions for UE category NB1</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL>
+<table border="1">
+<tr>
+<td bgcolor="#FFFFCC" align="center"><b>Configuration ID</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Retry Count</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Band</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Channel</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Cell Power (dBm)</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Downlink Subcarriers</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Modulation</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Ntones</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Uplink Sub-carrier Spacing</b></td>
+<td bgcolor="#FFFFCC" align="center"><b>Specification Reference</b></td>
+<td bgcolor="#6699CC" align="center"><b>Throughput (%)</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Throughput Min</b></td>
+<td bgcolor="#CCCCCC" align="center"><b>Throughput Max</b></td>
+<td bgcolor="#6699CC" align="center"><b>Links</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Time (s)</b></td>
+<td bgcolor="#FFCC0000" align="center"><b>Exceptions</b></td>
+<td bgcolor="#EEEEE0" align="center"><b>Notes</b></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3451</td>
+<td align="center">-110</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">BPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">99.5000</td>
+<td align="center">93.82</td>
+<td align="center">100</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">9.033</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">8</td>
+<td align="center">3799</td>
+<td align="center">-110</td>
+<td align="center">QPSK</td>
+<td align="center">12</td>
+<td align="center">BPSK</td>
+<td align="center">1@0</td>
+<td align="center">15 KHz</td>
+<td align="center">3GPP Test Requirements</td>
+<td align="center">99.0000</td>
+<td align="center">93.82</td>
+<td align="center">100</td>
+<td align="left"><span style="color:white">-</span></td>
+<td align="center">9.008</td>
+<td><span style="color:white">-</span></td>
+<td><span style="color:white">-</span></td>
+</tr>
+</table>
+<br>
+</UL><br><a href="#TOC1">Back to top</a><a name="18"></a><HR COLOR="#6699CC" SIZE="2"><big><b>NB End Call</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL></UL><br><a href="#TOC1">Back to top</a><a name="19"></a><HR COLOR="#6699CC" SIZE="2"><big><b>Close Sequence Deivces</b></big><UL>
+<b>Status:  </b><b><span style="color:#00CC00">PASS</span></b>
+</UL><UL></UL><br><a href="#TOC1">Back to top</a><HR COLOR="#6699CC" SIZE="2">
